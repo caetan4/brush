@@ -1,37 +1,51 @@
-var mouse = {
-  x: 0,
-  y: 0
+class Point {
+  constructor(args) {
+    this.position = createVector(args.x || 0,args.y || 0 );
+    this.fill = args.fill  || 'white';
+    this.size = args.size || 10;
+    this.stroke = args.stroke || 'black';
+    this.opacity = args.opacity ||1; 
+    this.friction = args.friction || 0.1;
+  }
+
+draw() {
+  fill(this.fill);
+  noStroke();
+  ellipse(this.position.x, this.position.y, this.size);
 }
-var cuad = {
-  x: 0,
-  y: 0
+
+  update(mouse) {
+    this.position.x += (mouseX-this.position.x) * this.friction;
+    this.position.y += (mouseY-this.position.y) * this.friction;
+     
+  }
 }
-var friction_a = 0.1;
-var friction_b = 0.05;
-window.setup = () => {
- createCanvas(windowWidth, windowHeight);
- background('black');
- mouse = createVector(mouseX, mouseY);
- cuad = createVector(mouseX, mouseY);
+let point_a;
+let point_b;
+
+window.setup = (event) => {
+  point_a = new Point({  //esto es una instancia de la clase Point
+  fill : 'blue',
+  friction : 0.05,
+  });
+point_b = new Point({  //esto es una instancia de la clase Point
+    fill : 'magenta',
+    friction : 0.10,
+
+    });
+    
+   createCanvas(windowWidth, windowHeight);
 };
 
 // p5.js draw function
 window.draw = () => {
  background('black');
-  mouse.x += (mouseX - mouse.x) * friction_a;
-  mouse.y += (mouseY - mouse.y) * friction_a;
-  cuad.x += (mouseX - cuad.x) * friction_b;
-  cuad.y += (mouseY - cuad.y) * friction_b;
-  ellipse(cuad.x, cuad.y, 15, 15);
-fill(255, 0, 0);
-  ellipse(mouse.x, mouse.y, 10, 10);
-  text(mouseX + "," + mouseY, mouseX, mouseY);
-  if (mouseIsPressed) {
-    fill(0, 0, 200);
-  }
-  else {
-    fill(255);
-  }
+ point_a.update();
+ point_a.draw();
+
+ point_b.update();
+  point_b.draw();
+
 
 };
 
