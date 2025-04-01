@@ -1,56 +1,36 @@
-class Point {
-  constructor(args) {
-    this.position = createVector(args.x || 0,args.y || 0 );
-    this.fill = args.fill  || 'white';
-    this.size = args.size || 10;
-    this.stroke = args.stroke || 'black';
-    this.opacity = args.opacity ||1; 
-    this.friction = args.friction || 0.1;
-  }
+import  Point from './js/complements/points.js'; // Import the Point class
 
-draw() {
-  fill(this.fill);
-  noStroke();
-  ellipse(this.position.x, this.position.y, this.size);
-}
-
-  update(mouse) {
-    this.position.x += (mouseX-this.position.x) * this.friction;
-    this.position.y += (mouseY-this.position.y) * this.friction;
-     
-  }
-}
-let point_a;
-let point_b;
+const PALETTE = ['rgb(182, 222, 127)','rgb(239,172,165)','rgb(62, 132, 64)']; 
+const TOTAL_POINTS = 10; // Number of points
+const bg = PALETTE[Math.floor(Math.random() * PALETTE.length)]; // Random background color
+let points = []; // Array to hold points
 
 window.setup = (event) => {
-  point_a = new Point({  //esto es una instancia de la clase Point
-  fill : 'blue',
-  friction : 0.05,
-  });
-point_b = new Point({  //esto es una instancia de la clase Point
-    fill : 'magenta',
-    friction : 0.10,
-
-    });
+  for (let i = 1; i < TOTAL_POINTS; i++) {
+    const randomColor = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+   
+    const point = new Point({
+     stroke: 0,
+     fill: randomColor,
+     size: 30 - (20 * i),
+     friction: i * 0.01,
+    })
+    points.push(point);
     
-   createCanvas(windowWidth, windowHeight);
+ }
+ createCanvas(windowWidth, windowHeight);
 };
 
 // p5.js draw function
-window.draw = () => {
- background('black');
- point_a.update();
- point_a.draw();
-
- point_b.update();
-  point_b.draw();
-
-
+window.draw = (event) => {
+ background('white'); // Set background color
+  for (let i = 0; i < points.length; i++) {
+    points[i].draw();
+  }
 };
 
 // p5.js windowResized function
-window.windowResized = () => {
+window.windowResized = (event) => {
 resizeCanvas(windowWidth, windowHeight);
-background('black'); // Reset background after resizing
+background(rgb(247,239,218)); // Reset background after resizing
 };
