@@ -1,3 +1,4 @@
+
 import  Point from './js/complements/points.js'; // Import the Point class
 
 const PALETTE = ['rgb(182, 222, 127)','rgb(239,172,165)','rgb(62, 132, 64)']; 
