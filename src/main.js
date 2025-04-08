@@ -1,7 +1,7 @@
 import  Point from './js/complements/points.js'; // Import the Point class
 
 const PALETTE = ['rgb(182, 222, 127)','rgb(239,172,165)','rgb(62, 132, 64)']; 
-const TOTAL_POINTS = 10; // Number of points
+const TOTAL_POINTS = 12; // Number of points
 const bg = PALETTE[Math.floor(Math.random() * PALETTE.length)]; // Random background color
 let points = []; // Array to hold points
 
@@ -13,7 +13,7 @@ window.setup = (event) => {
      stroke: 0,
      fill: randomColor,
      size: 30 - (20 * i),
-     friction: i * 0.01,
+     friction: i * 0.02,
     })
     points.push(point);
     
