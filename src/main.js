@@ -33,5 +33,6 @@ window.draw = (event) => {
 // p5.js windowResized function
 window.windowResized = (event) => {
 resizeCanvas(windowWidth, windowHeight);
-background(rgb(247,239,218)); // Reset background after resizing
+background(0);
+//background(rgb(247,239,218)); // Reset background after resizing
 };

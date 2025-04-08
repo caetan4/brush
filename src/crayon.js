@@ -1,9 +1,19 @@
-import Line from ".js/crayon/line.js"; // Import the Line class
+import Preloader from "./preloader.js"; // Import the Point class
+import Line from "./line.js"; // Import the Line class
+
+
 let lines = []; // Array to hold lines
-let _line = []; // Array to hold points
+let _line = null; // Array to hold points
+const redoBtn = document.getElementById('.redo');
+const erreaserBtn = document.getElementById('.erreaser');
+redoBtn.addEventListener('click', () => {
+});
+
+erreaserBtn.addEventListener('click', () => {
+});
+
 
 window.setup = (event) => {
-
  createCanvas(windowWidth, windowHeight);
 };
 window.mousePressed = (event) => {
@@ -23,13 +33,15 @@ window.mouseDragged = (event) => {
 
 
 window.mouseDragged = (event) => {
-    background('white'); // Set background color
-lines.forEach((Line) => line.draw()); // Draw each line in the array
+   
+const p = createVector(mouseX, mouseY);
+_line.addPoint(p); // Add the current mouse position to the line
+  
 };
 
 window.draw = (event) => {
   background(0); // Set background color
-  lines.forEach((Line) =>  line.draw()) // Draw each line in the array
+  lines.forEach((line) =>  line.draw()) // Draw each line in the array
 
 };
 

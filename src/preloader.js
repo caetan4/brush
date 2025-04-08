@@ -1,4 +1,4 @@
-export default class Line {
+export default class Preloader {
     constructor(args = {}) {
         this.points = args.points || []; // Array to hold points
         this.stroke = args.stroke || color(255,0,0); // Stroke color
